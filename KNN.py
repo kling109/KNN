@@ -30,8 +30,8 @@ def dotProduct(vecA,vecB):
 def cosDistance(vecA,vecB):
 	normA = math.sqrt(dotProduct(vecA,vecA))
 	normB = math.sqrt(dotProduct(vecB,vecB))
-	return dotProduct(vecA,vecB)/(normA*normB) 
-	
+	return dotProduct(vecA,vecB)/(normA*normB)
+
 #compare predicted labels to truth labels. Identify errors and print accuracy
 def printAccuracy(pred,truth):
 	total = 0.0
@@ -43,7 +43,7 @@ def printAccuracy(pred,truth):
 		else:
 			print("Predicted that test point ",i," was ",pred[i], "but it is actually ",truth[i])
 	print("The accuracy is: ", 100*(correct/total), " percent")
-	
+
 #The KNN algorithm. Predicts the label for each test data set instance and adds to a list. Returns the list as output
 def knn(train_data,train_labels,test_data):
 	predictions = []
@@ -51,9 +51,15 @@ def knn(train_data,train_labels,test_data):
 	#for each test data point predict the label and add your prediction to the preditions list
 	#compare to every data point in train_data using cosDistance by making a call to the above function
 	#find the index, c, of the closest data point
-
-		
-	
+	for i in test_data:
+		minDist = 2
+		minDistIndex = -1
+		for j in range(len(train_data)):
+			currDist = cosDistance(i, train_data[j])
+			if currDist < minDist:
+				minDist = currDist
+				minDistIndex = j
+		preditions.append(train_labels[minDistIndex])
 	return predictions
 
 
