@@ -1,7 +1,13 @@
+# Name: Trevor Kling
+# ID: 002270716
+# Email: kling109@mail.chapman.edu
+# Course: CPSC 392: Introduction to Data Science
+# Last Date Modified: 09/14/2019
+
 import math
 
 NUM_ATTRIBUTES = 4
-TRAIN_DATA_FILE = "sample_train.csv"
+TRAIN_DATA_FILE = "cleaned_data.csv"
 TEST_DATA_FILE = "sample_test.csv"
 
 #read the train file and return the data matrix and the target variable to predict
@@ -52,14 +58,14 @@ def knn(train_data,train_labels,test_data):
 	#compare to every data point in train_data using cosDistance by making a call to the above function
 	#find the index, c, of the closest data point
 	for i in test_data:
-		minDist = 2
-		minDistIndex = -1
+		minDist = 0
+		minDistIndex = 0
 		for j in range(len(train_data)):
 			currDist = cosDistance(i, train_data[j])
-			if currDist < minDist:
+			if currDist > minDist:
 				minDist = currDist
 				minDistIndex = j
-		preditions.append(train_labels[minDistIndex])
+		predictions.append(train_labels[minDistIndex])
 	return predictions
 
 
